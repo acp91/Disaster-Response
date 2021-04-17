@@ -1,3 +1,6 @@
+# final command to run: python process_data.py 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/disaster_messages.csv?raw=true' 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/disaster_categories.csv?raw=true' 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db'
+
+
 # import libraries
 import sys
 import pandas as pd
@@ -17,6 +20,8 @@ def load_data(messages_filepath, categories_filepath):
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df = messages.merge(categories, left_index=True, right_index=True)
+    # drop index columns for both datasets
+    df.drop(['id_x', 'id_y'], axis=1, inplace=True)
     
     # create a dataframe of individual category columns
     categories = categories['categories'].str.split(pat=';', expand=True)
@@ -44,12 +49,13 @@ def load_data(messages_filepath, categories_filepath):
 def clean_data(df):
     # drop duplicate values
     df.drop_duplicates(inplace=True)
+    return df
 
 
 def save_data(df, database_filename):
     # create a new DB engine
     engine = create_engine('sqlite:///DisasterResponse.db')
-    df.to_sql('DisasterResponse', engine, index=False)
+    df.to_sql('DisasterResponse', engine, index=False, if_exists='replace')
 
 def main():
     if len(sys.argv) == 4:
@@ -59,9 +65,13 @@ def main():
         print('Loading data...\n    MESSAGES: {}\n    CATEGORIES: {}'
               .format(messages_filepath, categories_filepath))
         df = load_data(messages_filepath, categories_filepath)
+        print(df.head())
+        print(df.shape)
 
         print('Cleaning data...')
         df = clean_data(df)
+        print(df.head())
+        print(df.shape)
         
         print('Saving data...\n    DATABASE: {}'.format(database_filepath))
         save_data(df, database_filepath)
@@ -79,3 +89,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
