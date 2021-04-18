@@ -92,9 +92,9 @@ def build_model():
     ])
 
     parameters = {
-        'features__text_pipeline__count_vect__binary': [True],#, False],
-        'features__text_pipeline__tfidf__smooth_idf': [True],# False],
-        'clf__estimator__learning_rate': [1]#, 0.7]
+        'features__text_pipeline__count_vect__binary': [True, False],
+        'features__text_pipeline__tfidf__smooth_idf': [True, False],
+        'clf__estimator__learning_rate': [1, 0.7]
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters)
