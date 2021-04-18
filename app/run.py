@@ -27,11 +27,12 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+#engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
+engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
+df = pd.read_sql_table('DisasterResponse', engine)
 
 # load model
-model = joblib.load("../modelscon/your_model_name.pkl")
+model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -43,7 +44,16 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    
+
+    # numbers of tweets in english vs other languages
+    count_language = (df.message==df.original).value_counts().sort_values()
+    count_language_cols = ['English', 'Other Languages']
+
+    # numbers of tweets in each of the categories
+    categories_summary = df.drop(columns=['message', 'original', 'genre']).sum()
+    count_categories = categories_summary
+    count_categories_cols = categories_summary.index
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -62,6 +72,42 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=count_language_cols,
+                    y=count_language
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Messages in Languages',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Languages"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=count_categories_cols,
+                    y=count_categories
+                )
+            ],
+
+            'layout': {
+                'title': 'Count of Messages per Category',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories"
                 }
             }
         }
