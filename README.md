@@ -11,7 +11,7 @@ Folder is structured as follows:
 2) Model: contains train_classifier.py script that loads data from DisasterResponse DB and runs AdaBoostClassifier to classify tweets in the data. Code allows to optimize parameter selection through GridSearchCV functionality. For ease of use, pre-trained model is available within the Models folder called AdaBoostClassifier_model.pkl. Folder also contains "ML)Pipeline_Preparation.ipynb jupyter notebook with step by stpe process on data modelling. For reference, this is the pipeline/gridsearch used for the classifier:
  
     create pipeline for the model
-    
+  ***  
     pipeline = Pipeline([
         ('features', FeatureUnion([
             ('text_pipeline', Pipeline([
@@ -19,10 +19,9 @@ Folder is structured as follows:
                 ('tfidf', TfidfTransformer())
             ]))
         ])),
-
         ('clf', MultiOutputClassifier(AdaBoostClassifier()))
     ])
-
+***
     define parameters to tweak through grid search
     
     parameters = {
