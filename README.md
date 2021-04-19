@@ -44,7 +44,8 @@ Top 15 most popular words (excluding stopwords):
 # How to Run
 1) First change directory (cd) to the folder of the project, e.g. "acp91/Disaster_response_project_2"
 2) To preprocess data and create your own DB, run the following command within the project directory
-* python process_data.py' '.../data/disaster_messages.csv' '.../data/disaster_categories.csv' '.../data/DisasterResponse.db'
+***
+python process_data.py' '.../data/disaster_messages.csv' '.../data/disaster_categories.csv' '.../data/DisasterResponse.db'
 3) 
 
 
