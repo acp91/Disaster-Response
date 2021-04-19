@@ -44,8 +44,7 @@ Top 15 most popular words (excluding stopwords):
 # How to Run
 1) First change directory (cd) to the folder of the project, e.g. "acp91/Disaster_response_project_2"
 2) To preprocess data and create your own DB, run the following command within the project directory:
-***
-python process_data.py ".../data/disaster_messages.csv" ".../data/disaster_categories.csv" ".../data/DisasterResponse.db"
+> python process_data.py ".../data/disaster_messages.csv" ".../data/disaster_categories.csv" ".../data/DisasterResponse.db"
 
 This command will preprocess the data per process_data.py file and store it in a new SQL DB called "DisasterResponse.db" within the Data folder.
 3) To train your model and store it as a pickle file for later use, run the following command within the project directory:
