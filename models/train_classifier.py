@@ -79,6 +79,8 @@ def tokenize(text):
 
 
 def build_model():
+
+    # create pipeline for the model
     pipeline = Pipeline([
         ('features', FeatureUnion([
 
@@ -91,18 +93,21 @@ def build_model():
         ('clf', MultiOutputClassifier(AdaBoostClassifier()))
     ])
 
+    # define parameters to tweak through grid search
     parameters = {
         'features__text_pipeline__count_vect__binary': [True, False],
         'features__text_pipeline__tfidf__smooth_idf': [True, False],
         'clf__estimator__learning_rate': [1, 0.7]
     }
 
+    # create a grid search object based on define pipeline and parameters above
     cv = GridSearchCV(pipeline, param_grid=parameters)
 
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
 
+    # predict Y (categories) based on the test data
     Y_pred = model.predict(X_test)
 
     # loop fro each column/category name and produce a classification report
