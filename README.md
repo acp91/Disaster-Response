@@ -57,3 +57,5 @@ This command will read data from the "DisasterResponse.db" created in the previo
 > python run.py
 
 Once the dashboard is running, navigate to http://0.0.0.0:3001/ to access it. You can type any message (but makes most sense to use a message that relates to a disaster/emergency) and it will be classified according to pre-trained model from step 3).
+
+For example, message "Should a storm catch you off guard in the mountain, your best option is to stay away from rocks, walls and trees" would be classified as Request, Transport, Weather Related and Floods.
