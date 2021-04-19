@@ -12,6 +12,9 @@ from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
 
+from nltk.corpus import stopwords
+from nltk.stem.wordnet import WordNetLemmatizer
+import re
 
 app = Flask(__name__)
 
@@ -26,6 +29,30 @@ def tokenize(text):
 
     return clean_tokens
 
+# another tokenize function -> will be used to count most popular words used in tweets
+def tokenize_graph(text):
+    stop_words = stopwords.words("english")
+    lemmatizer = WordNetLemmatizer()
+
+    # normalize text
+    text = text.lower()
+    # remove punctuation
+    text = re.sub(r'[^a-zA-A0-9]', ' ', text)
+    # tokenize the text
+    text = word_tokenize(text)
+    # Remove stop words
+    text = [w for w in text if w not in stop_words]
+
+    # Lemmatization
+    # Reduce words to their root form
+    # lemmatize for nouns
+    text = [lemmatizer.lemmatize(x) for x in text]
+    # lemmatize for verbs
+    text = [lemmatizer.lemmatize(x, pos='v') for x in text]
+
+    return text
+
+
 # load data
 #engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
 engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
@@ -34,6 +61,21 @@ df = pd.read_sql_table('DisasterResponse', engine)
 # load model
 model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
 
+# get dictionary of most popular words
+all_words = dict()
+nr_tweets = df.shape[0]
+for x in range(nr_tweets):
+    sentence = tokenize_graph(df.message[x])
+    for word in sentence:
+        if word not in all_words:
+            all_words[word]=0
+    all_words[word] += 1
+
+# create dataframe from dictionary
+all_words = pd.DataFrame(all_words, index=[0]).transpose()
+all_words = all_words.reset_index()
+# sort the dataframe
+all_words.sort_values(by=0, ascending=False, inplace=True)
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
@@ -50,9 +92,13 @@ def index():
     count_language_cols = ['English', 'Other Languages']
 
     # numbers of tweets in each of the categories
-    categories_summary = df.drop(columns=['message', 'original', 'genre']).sum()
+    categories_summary = df.drop(columns=['message', 'original', 'genre']).sum().sort_values(ascending=False)
     count_categories = categories_summary
     count_categories_cols = categories_summary.index
+
+    # count most popular words (excluding stop words)
+    popular_words_names = all_words.head(15)['index']
+    popular_words_cols = all_words.head(15)[0]
 
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -60,8 +106,44 @@ def index():
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=count_categories_cols,
+                    y=count_categories
+                )
+            ],
+
+            'layout': {
+                'title': 'Count of Messages per Category',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=count_categories_cols,
+                    y=count_categories
+                )
+            ],
+
+            'layout': {
+                'title': 'Most Popular Words in Tweets',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Words"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=popular_words_names,
+                    y=popular_words_cols
                 )
             ],
 
@@ -90,24 +172,6 @@ def index():
                 },
                 'xaxis': {
                     'title': "Languages"
-                }
-            }
-        },
-        {
-            'data': [
-                Bar(
-                    x=count_categories_cols,
-                    y=count_categories
-                )
-            ],
-
-            'layout': {
-                'title': 'Count of Messages per Category',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Categories"
                 }
             }
         }
