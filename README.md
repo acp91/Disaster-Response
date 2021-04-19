@@ -48,8 +48,7 @@ Top 15 most popular words (excluding stopwords):
 
 This command will preprocess the data per process_data.py file and store it in a new SQL DB called "DisasterResponse.db" within the Data folder.
 3) To train your model and store it as a pickle file for later use, run the following command within the project directory:
-***
-python train_classifier.py ".../data/DisasterResponse.db" "classifier.pkl"
+> python train_classifier.py ".../data/DisasterResponse.db" ".../models/classifier.pkl"
 
-This command
+This command will read data from the "DisasterResponse.db" created in the previous step, train a classifier (in this case it is AdaBoostClassifier) and store the model as a pickle file "classifier.pkl" in the "models" folder.
 
