@@ -53,3 +53,7 @@ This command will preprocess the data per process_data.py file and store it in a
 
 This command will read data from the "DisasterResponse.db" created in the previous step, train a classifier (in this case it is AdaBoostClassifier) and store the model as a pickle file "classifier.pkl" in the "models" folder.
 
+4) Now that you have a trained model you can view the results in the web app. To view the web app, run the following command within the "app" folder:
+> python run.py
+
+Once the dashboard is running, navigate to http://0.0.0.0:3001/ to access it.
