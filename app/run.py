@@ -124,8 +124,8 @@ def index():
         {
             'data': [
                 Bar(
-                    x=count_categories_cols,
-                    y=count_categories
+                    x=popular_words_names,
+                    y=popular_words_cols
                 )
             ],
 
@@ -136,24 +136,6 @@ def index():
                 },
                 'xaxis': {
                     'title': "Words"
-                }
-            }
-        },
-        {
-            'data': [
-                Bar(
-                    x=popular_words_names,
-                    y=popular_words_cols
-                )
-            ],
-
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
                 }
             }
         },
@@ -174,7 +156,25 @@ def index():
                     'title': "Languages"
                 }
             }
-        }
+        },
+        {
+            'data': [
+                Bar(
+                    x=genre_names,
+                    y=genre_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Genres',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Genre"
+                }
+            }
+        },
     ]
     
     # encode plotly graphs in JSON
