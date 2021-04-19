@@ -42,7 +42,7 @@ Top 15 most popular words (excluding stopwords):
 ![MostPopularWords](https://user-images.githubusercontent.com/61375966/115208971-6fee7280-a0fd-11eb-80d3-5b67dda8f09e.png)
 
 # Requirements / Packages Needed
-Requirements have been create through *pip list --format=freeze > requirements.txt* command.
+Requirements have been created through *pip list --format=freeze > requirements.txt* command.
 
 To load them, simply run *pip install -r requirements.txt* in the project environment.
 
