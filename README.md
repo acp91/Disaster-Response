@@ -47,7 +47,7 @@ Requirements have been created through *pip list --format=freeze > requirements.
 To load them, simply run *pip install -r requirements.txt* in the project environment.
 
 # How to Run
-1) First change directory (cd) to the folder of the project, e.g. "acp91/Disaster_response_project_2"
+1) First change directory (cd) to the folder of the project
 2) To preprocess data and create your own DB, run the following command within the project directory:
 > python process_data.py ".../data/disaster_messages.csv" ".../data/disaster_categories.csv" ".../data/DisasterResponse.db"
 
