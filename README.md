@@ -47,6 +47,7 @@ Top 15 most popular words (excluding stopwords):
 > python process_data.py ".../data/disaster_messages.csv" ".../data/disaster_categories.csv" ".../data/DisasterResponse.db"
 
 This command will preprocess the data per process_data.py file and store it in a new SQL DB called "DisasterResponse.db" within the Data folder.
+
 3) To train your model and store it as a pickle file for later use, run the following command within the project directory:
 > python train_classifier.py ".../data/DisasterResponse.db" ".../models/classifier.pkl"
 
