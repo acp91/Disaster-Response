@@ -12,6 +12,8 @@ from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
 
+import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 import re
