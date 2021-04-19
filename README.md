@@ -37,6 +37,7 @@ Different categories:
 ![Count_per_Category](https://user-images.githubusercontent.com/61375966/115192826-9d322500-a0eb-11eb-9a34-fe602fd6b619.png)
 
 Top 15 most popular words (excluding stopwords):
-![MostPopularWords](https://user-images.githubusercontent.com/61375966/115207436-e4281680-a0fb-11eb-93e3-092f38d1f108.png)
+![MostPopularWords](https://user-images.githubusercontent.com/61375966/115208867-577e5800-a0fd-11eb-8eca-c26e183dfcb8.png)
+
 
 
