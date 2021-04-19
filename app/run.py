@@ -55,11 +55,15 @@ def tokenize_graph(text):
 
 # load data
 #engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
-engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
+#engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
+#df = pd.read_sql_table('DisasterResponse', engine)
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('DisasterResponse', engine)
 
+
 # load model
-model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
+#model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
+model = joblib.load("../models/classifier.pkl")
 
 # get dictionary of most popular words
 all_words = dict()
