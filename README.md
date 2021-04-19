@@ -56,4 +56,4 @@ This command will read data from the "DisasterResponse.db" created in the previo
 4) Now that you have a trained model you can view the results in the web app. To view the web app, run the following command within the "app" folder:
 > python run.py
 
-Once the dashboard is running, navigate to [http://0.0.0.0:3001/] to access it.
+Once the dashboard is running, navigate to http://0.0.0.0:3001/ to access it. You can type any message (but makes most sense to use a message that relates to a disaster/emergency) and it will be classified according to pre-trained model from step 3).
