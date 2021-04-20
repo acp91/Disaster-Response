@@ -8,11 +8,12 @@ from nltk.tokenize import word_tokenize
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
-#from sklearn.externals import joblib
+# from sklearn.externals import joblib
 import joblib
 from sqlalchemy import create_engine
 
 import nltk
+
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -20,7 +21,15 @@ import re
 
 app = Flask(__name__)
 
+
 def tokenize(text):
+    """
+    Prepares input string by lemmatizing, tokenizing and normalizing the text.
+
+    :param text: string to be tokenized
+    :return: list of tokenized text
+    """
+
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -31,8 +40,16 @@ def tokenize(text):
 
     return clean_tokens
 
+
 # another tokenize function -> will be used to count most popular words used in tweets
 def tokenize_graph(text):
+    """
+    Prepares input string by removing stop words, punctuations, reducing words to their root forms, normalizing and tokenizing the text.
+
+    :param text: string to be tokenized
+    :return: list of tokenized text
+    """
+
     stop_words = stopwords.words("english")
     lemmatizer = WordNetLemmatizer()
 
@@ -55,46 +72,56 @@ def tokenize_graph(text):
     return text
 
 
+def main_words(df):
+    """
+    Counts the number of times each word is used
+
+    :param df: df object with strings
+    :return: df object with 2 columns: words used in sentences and count of how many times they were used
+    """
+
+    # get dictionary of most popular words
+    all_words = dict()
+    nr_tweets = df.shape[0]
+    for x in range(nr_tweets):
+        sentence = tokenize_graph(df.message[x])
+        for word in sentence:
+            if word not in all_words:
+                all_words[word] = 0
+        all_words[word] += 1
+
+    # create dataframe from dictionary
+    all_words = pd.DataFrame(all_words, index=[0]).transpose()
+    all_words = all_words.reset_index()
+    # sort the dataframe
+    all_words.sort_values(by=0, ascending=False, inplace=True)
+
+    return all_words
+
+
 # load data
-#engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
-#engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
-#df = pd.read_sql_table('DisasterResponse', engine)
+# engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
+# engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
+# df = pd.read_sql_table('DisasterResponse', engine)
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('DisasterResponse', engine)
 
-
 # load model
-#model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
+# model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
 model = joblib.load("../models/classifier.pkl")
 
-# get dictionary of most popular words
-all_words = dict()
-nr_tweets = df.shape[0]
-for x in range(nr_tweets):
-    sentence = tokenize_graph(df.message[x])
-    for word in sentence:
-        if word not in all_words:
-            all_words[word]=0
-    all_words[word] += 1
-
-# create dataframe from dictionary
-all_words = pd.DataFrame(all_words, index=[0]).transpose()
-all_words = all_words.reset_index()
-# sort the dataframe
-all_words.sort_values(by=0, ascending=False, inplace=True)
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
 @app.route('/index')
 def index():
-    
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
     # numbers of tweets in english vs other languages
-    count_language = (df.message==df.original).value_counts().sort_values()
+    count_language = (df.message == df.original).value_counts().sort_values()
     count_language_cols = ['English', 'Other Languages']
 
     # numbers of tweets in each of the categories
@@ -103,6 +130,7 @@ def index():
     count_categories_cols = categories_summary.index
 
     # count most popular words (excluding stop words)
+    all_words = main_words(df)
     popular_words_names = all_words.head(15)['index']
     popular_words_cols = all_words.head(15)[0]
 
@@ -182,11 +210,11 @@ def index():
             }
         },
     ]
-    
+
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    
+
     # render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
@@ -195,7 +223,7 @@ def index():
 @app.route('/go')
 def go():
     # save user input in query
-    query = request.args.get('query', '') 
+    query = request.args.get('query', '')
 
     # use model to predict classification for query
     classification_labels = model.predict([query])[0]

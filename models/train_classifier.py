@@ -13,6 +13,7 @@ import sqlite3
 # import libraries for ML
 import re
 import nltk
+
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
@@ -46,6 +47,13 @@ import pickle
 
 
 def load_data(database_filepath):
+    """
+    Loads database and returns X (independent) and Y (dependent) variables to be used later in classification
+
+    :param database_filepath: path for the databse that contains merged/clean df from process_data.py script
+    :return: X, Y and column names of Y variable
+    """
+
     # connect to the database
     conn = sqlite3.connect(database_filepath)
     df = pd.read_sql('SELECT * FROM DisasterResponse', conn)
@@ -56,6 +64,14 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    Prepares input string to be used later in classification, e.g. removing stop words, punctuations, reducing words to their root forms
+    and normalizing and tokenizing the text.
+
+    :param text: string to be tokenized
+    :return: list of tokenized text
+    """
+
     stop_words = stopwords.words("english")
     lemmatizer = WordNetLemmatizer()
 
@@ -79,6 +95,12 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Builds a classification model through the use of pipelines and grid search functionality
+
+    :param : no input
+    :return: returns GridSearchCV object that optimizes model (defined in pipeline) input based on defined parameters
+    """
 
     # create pipeline for the model
     pipeline = Pipeline([
@@ -100,25 +122,44 @@ def build_model():
         'clf__estimator__learning_rate': [1, 0.7]
     }
 
-    # create a grid search object based on define pipeline and parameters above
+    # create a grid search object based on defined pipeline and parameters above
     cv = GridSearchCV(pipeline, param_grid=parameters)
 
     return cv
 
+
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    Prints out classification report, showing accuracy, precision, recall and F1 score for each category
+
+    :param model: model that was used on the training data for classification
+    :param X_test: df of independent variable test data
+    :param Y_test: df of dependent variable test data
+    :param category_names: list of names of different categories that model helps predicts
+    :return: -
+    """
 
     # predict Y (categories) based on the test data
     Y_pred = model.predict(X_test)
 
     # loop fro each column/category name and produce a classification report
     for col, col_name in enumerate(category_names):
-        print("Classification report for column " + str(col + 1) + " is:\n" + classification_report(Y_test.iloc[:, col], Y_pred[:, col]))
+        print("Classification report for column " + str(col + 1) + " is:\n" + classification_report(Y_test.iloc[:, col],
+                                                                                                    Y_pred[:, col]))
 
 
 def save_model(model, model_filepath):
+    """
+    Saves the model as a pickle file in the specified path
+
+    :param model: model that was used on the training data for classification
+    :param model_filepath: path to save the model to
+    :return: -
+    """
     # Save to file in the current working directory
     with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
+
 
 def main():
     if len(sys.argv) == 3:
@@ -126,13 +167,13 @@ def main():
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
         X, Y, category_names = load_data(database_filepath)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
-        
+
         print('Building model...')
         model = build_model()
-        
+
         print('Training model...')
         model.fit(X_train, Y_train)
-        
+
         print('Evaluating model...')
         evaluate_model(model, X_test, Y_test, category_names)
 
@@ -142,9 +183,9 @@ def main():
         print('Trained model saved!')
 
     else:
-        print('Please provide the filepath of the disaster messages database '\
-              'as the first argument and the filepath of the pickle file to '\
-              'save the model to as the second argument. \n\nExample: python '\
+        print('Please provide the filepath of the disaster messages database ' \
+              'as the first argument and the filepath of the pickle file to ' \
+              'save the model to as the second argument. \n\nExample: python ' \
               'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
 
 
