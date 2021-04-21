@@ -34,10 +34,10 @@ Folder is structured as follows:
 4) App: contains run.py script that uses above-mentioned model and flask to create a website with dashboards and ability to classify new messges/tweets. Below are some screenshot to summarize tweet data (taken from the dashboard):
 
 Different categories:
-![Count_per_Category](https://user-images.githubusercontent.com/61375966/115192826-9d322500-a0eb-11eb-9a34-fe602fd6b619.png)
+![Count_per_Category](https://github.com/acp91/Disaster_response_project_2/blob/main/images/Count_per_Category.png)
 
 Top 15 most popular words (excluding stopwords):
-![MostPopularWords](https://user-images.githubusercontent.com/61375966/115208971-6fee7280-a0fd-11eb-80d3-5b67dda8f09e.png)
+![MostPopularWords](https://github.com/acp91/Disaster_response_project_2/blob/main/images/MostPopularWords.png)
 
 # Requirements / Packages Needed
 Requirements have been created through *pip list --format=freeze > requirements.txt* command.
@@ -63,7 +63,7 @@ Once the dashboard is running, navigate to http://0.0.0.0:3001/ to access it. Yo
 
 For example, message "The earthquake in the nearby village destroyed many buildings. Many injured people were taken to the hospital" would be classified as Aid Related, Infastructure Related, Hospitals, Weather Related and Earthquake.
 
-![Classified_message](https://user-images.githubusercontent.com/61375966/115521089-16b44980-a28b-11eb-8714-d8348a312c35.png)
+![Classified_message](https://github.com/acp91/Disaster_response_project_2/blob/main/images/Classified_message.png)
 
 # Model Evaluation / Comments on Performance
 train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
@@ -72,14 +72,13 @@ Accuracy, defined as <img src="https://render.githubusercontent.com/render/math?
 
 ![classification_request](https://github.com/acp91/Disaster_response_project_2/blob/main/images/classification_request.png)
 
-* Precision, defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
+Precision is defined as <img src="https://render.githubusercontent.com/render/math?math=\large \frac{TruePositive}{TruePositive %2B FalsePositive}">. For "request" it is as 0.78 which means 78% of messages, classified as "request" were correctly classified (i.e. they were indeed related to "request"). Precision is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "request" when in fact it isn't. We can say that the model performs relatively well in identifying false positives.
 
-* Recall on the other hand is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalseNegative}"> and is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "Accident" but in fact it refers to an accident
+Recall on the other hand is defined as <img src="https://render.githubusercontent.com/render/math?math=\large \frac{TruePositive}{TruePositive %2B FalseNegative}">. For "request" it is at 0.31 which means the model correctly classified as "request" 31% of all messages that relate to "request" . Recall is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "request" but in fact it refers to a request. We can say that the model performs poorly in identifying false negatives.
 
-It's probably fair to assume that in case of disaster response, recall is the more relevant measure - if there is indeed an emergency, we'd want to know it asap so we can respond accordingly. But we can't ignore precision either as it could mean we are wasting resources responding to a "fake" emergency. This is where F1 score comes in.
+It's probably fair to assume that in case of disaster response, recall is the more relevant measure - if there is indeed an emergency, we'd want to know it asap so we can respond accordingly. Therefore we can conclude that for "request", the model is not very useful.
 
-Refering to [the same article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) one more time, F1 score is defined as:
-<img src="https://latex.codecogs.com/svg.latex?2*\frac{Precision*Recall}{Precision+Recall}">.
+But we can't ignore precision either as it could mean we are wasting resources responding to a "fake" emergency. This is where F1 score comes in: <img src="https://render.githubusercontent.com/render/math?math=\large 2* \frac{Precision * Recall}{Precision + Recall}">
 
 # Acknowledgements
 * [Precision, Recall - developers.google](https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall)
