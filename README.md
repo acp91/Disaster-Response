@@ -68,7 +68,7 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 # Model Evaluation / Comments on Performance
 train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
 
-Accuracy, defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive+TrueNegative}{TruePositive+TrueNegative+FalsePositive+FalseNegative}"> is only useful for set that has balanced data (e.g. number of positive and negative outcomes is proporationte). This is not the case for disaster response messages so let's rather look at the other 3 metrics on below example for "request" category:
+Accuracy, defined as <img src="https://render.githubusercontent.com/render/math?math=\frac{TruePositive+TrueNegative}{TruePositive+TrueNegative+FalsePositive+FalseNegative}"> is only useful for set that has balanced data (e.g. number of positive and negative outcomes is proporationte). This is not the case for disaster response messages so let's rather look at the other 3 metrics on below example for "request" category:
 
 * Precision, defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
