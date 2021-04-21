@@ -68,7 +68,7 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 # Model Evaluation / Comments on Performance
 train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
 
-Accuracy, defined as <img src="https://render.githubusercontent.com/render/math?math=\frac{TruePositive %2B TrueNegative}{TruePositive %2B TrueNegative %2B FalsePositive %2B FalseNegative}"> is only useful for set that has balanced data (e.g. number of positive and negative outcomes is proporationte). This is not the case for disaster response messages so let's rather look at the other 3 metrics on below example for "request" category:
+Accuracy, defined as <img src="https://render.githubusercontent.com/render/math?math=\large \frac{TruePositive %2B TrueNegative}{TruePositive %2B TrueNegative %2B FalsePositive %2B FalseNegative}"> is only useful for set that has balanced data (e.g. number of positive and negative outcomes is proporationte). This is not the case for disaster response messages so let's rather look at the other 3 metrics on below example for "request" category:
 
 * Precision, defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
@@ -86,4 +86,4 @@ Refering to [the same article](https://towardsdatascience.com/accuracy-precision
 * [Docstrings in Python](https://www.datacamp.com/community/tutorials/docstrings-python)
 * [Github Readme](https://github.com/matiassingers/awesome-readme)
 * [Mastering Github Markdown](https://guides.github.com/features/mastering-markdown/)
-* [LaTeX in Github](https://stackoverflow.com/questions/11256433/how-to-show-math-equations-in-general-githubs-markdownnot-githubs-blog)
+* [LaTeX in Github](https://gist.github.com/a-rodin/fef3f543412d6e1ec5b6cf55bf197d7b)
