@@ -101,13 +101,13 @@ def main_words(df):
 
 # load data
 # engine = create_engine('sqlite:///https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db')
-# engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
-# df = pd.read_sql_table('DisasterResponse', engine)
+#engine = create_engine(r'sqlite:///C:\Users\Andre\Desktop\Programming\Udacity\data_science\5\Disaster_response_project_2\data\DisasterResponse.db')
+#df = pd.read_sql_table('DisasterResponse', engine)
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('DisasterResponse', engine)
 
 # load model
-# model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/AdaBoostClassifier_model.pkl")
+#model = joblib.load("C:/Users/Andre/Desktop/Programming/Udacity/data_science/5/Disaster_response_project_2/models/classifier.pkl")
 model = joblib.load("../models/classifier.pkl")
 
 
@@ -115,6 +115,12 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/')
 @app.route('/index')
 def index():
+    """
+    add visuals (4 different bar charts)
+
+    :return: rendered template with encoded plotly graphs in JSON
+    """
+
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
@@ -222,6 +228,12 @@ def index():
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
+    """
+    Input field where user can write free text. Message will be classified based on the pre-trained model
+
+    :return: rendered template with input box to classify message
+    """
+
     # save user input in query
     query = request.args.get('query', '')
 
@@ -242,4 +254,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    #main()

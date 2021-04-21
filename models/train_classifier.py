@@ -59,7 +59,7 @@ def load_data(database_filepath):
     df = pd.read_sql('SELECT * FROM DisasterResponse', conn)
     # create X and y variables to be later used in classification
     X: DataFrame = df['message']
-    Y: DataFrame = df.drop(['message', 'original', 'genre'], axis=1)
+    Y: DataFrame = df.drop(['message', 'original', 'genre', 'related'], axis=1)
     return X, Y, Y.columns
 
 

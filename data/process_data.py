@@ -1,6 +1,3 @@
-# final command to run: python process_data.py 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/disaster_messages.csv?raw=true' 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/disaster_categories.csv?raw=true' 'https://github.com/acp91/Disaster_response_project_2/blob/main/data/DisasterResponse.db'
-
-
 # import libraries
 import sys
 import pandas as pd
@@ -55,11 +52,12 @@ def clean_data(df):
     """
 
     :param df: df object
-    :return: df after duplicates are dropped
+    :return: df after duplicates
     """
 
     # drop duplicate values
     df.drop_duplicates(inplace=True)
+
     return df
 
 
@@ -73,8 +71,9 @@ def save_data(df, database_filename):
     """
 
     # create a new DB engine
-    engine = create_engine('sqlite:///DisasterResponse.db')
-    df.to_sql(database_filename, engine, index=False, if_exists='replace')
+    #engine = create_engine('sqlite:///DisasterResponse.db')
+    engine = create_engine('sqlite:///' + database_filename)
+    df.to_sql('DisasterResponse', engine, index=False, if_exists='replace')
 
 
 def main():
