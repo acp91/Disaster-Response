@@ -63,7 +63,8 @@ This command will read data from the "DisasterResponse.db" created in the previo
 
 Once the dashboard is running, navigate to http://0.0.0.0:3001/ to access it. You can type any message (but makes most sense to use a message that relates to a disaster/emergency) and it will be classified according to pre-trained model from step 3).
 
-For example, message "Should a storm catch you off guard in the mountain, your best option is to stay away from rocks, walls and trees" would be classified as Request, Transport, Weather Related and Floods.
+For example, message "The earthquake in the nearby village destroyed many buildings. Many injured people were taken to the hospital" would be classified as Aid Related, Infastructure Related, Hospitals, Weather Related and Earthquake.
 
-![ClassifNewMessage](https://user-images.githubusercontent.com/61375966/115264793-e9ef1d80-a136-11eb-8d47-dfbb5a0e1cfd.png)
+![Classified_message](https://user-images.githubusercontent.com/61375966/115521089-16b44980-a28b-11eb-8714-d8348a312c35.png)
+
 
