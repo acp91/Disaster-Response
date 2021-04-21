@@ -68,3 +68,5 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 ![Classified_message](https://user-images.githubusercontent.com/61375966/115521089-16b44980-a28b-11eb-8714-d8348a312c35.png)
 
 
+# Acknowledgements
+[Accuracy, Precision, Recall, F1](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
