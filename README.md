@@ -69,7 +69,7 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
 
 As mentioned in [this article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9):
-* precision, defined as <img src="https://latex.codecogs.com/svg.latex?\Large&space;\frac{True Positive}{True Positive + False Positive}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />, is good for measuring your model's performance when the cost of False Positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
+* precision, defined as <img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />, is good for measuring your model's performance when the cost of False Positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
 # Acknowledgements
 * [Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
