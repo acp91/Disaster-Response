@@ -69,9 +69,9 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
 
 As mentioned in [this article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9):
-* precision defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{{TruePositive + FalsePositive}"/> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
+* Precision defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{{TruePositive + FalsePositive}"/> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
-* recall on the other hand is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{{TruePositive + FalseNegative}"/> and is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "Accident" but in fact it refers to an accident
+* Recall on the other hand is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{{TruePositive + FalseNegative}"/> and is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "Accident" but in fact it refers to an accident
 
 # Acknowledgements
 * [Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
