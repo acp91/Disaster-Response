@@ -70,6 +70,8 @@ train_classifier.py script also prints out classification report for each of the
 
 Accuracy, defined as <img src="https://render.githubusercontent.com/render/math?math=\large \frac{TruePositive %2B TrueNegative}{TruePositive %2B TrueNegative %2B FalsePositive %2B FalseNegative}"> is only useful for set that has balanced data (e.g. number of positive and negative outcomes is proporationte). This is not the case for disaster response messages so let's rather look at the other 3 metrics on below example for "request" category:
 
+![classification_request](https://github.com/acp91/Disaster_response_project_2/blob/main/images/classification_request.png)
+
 * Precision, defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
 * Recall on the other hand is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalseNegative}"> and is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "Accident" but in fact it refers to an accident
