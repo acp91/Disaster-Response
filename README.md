@@ -66,16 +66,22 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 ![Classified_message](https://user-images.githubusercontent.com/61375966/115521089-16b44980-a28b-11eb-8714-d8348a312c35.png)
 
 # Model Evaluation
-train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
+train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1. For now, let's take a closer look at precision,  recall and F1 score and see what they can tell us about the disaster response data.
 
 As mentioned in [this article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9):
-* Precision defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
+* Precision is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalsePositive}"> and is good for measuring your model's performance when the cost of false positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
 * Recall on the other hand is defined as <img src="https://latex.codecogs.com/svg.latex?\frac{TruePositive}{TruePositive+FalseNegative}"> and is good for measuring your model's performance when the cost of false negative is high. False negative in our case would be when message isn't classified as "Accident" but in fact it refers to an accident
+
+It's probably fair to assume that in case of disaster response, recall is the more relevant measure - if there is indeed an emergency, we'd want to know it asap so we can respond accordingly. But we can't ignore precision either as it could mean we are wasting resources responding to a "fake" emergency. This is where F1 score comes in.
+
+Refering to [the same article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9) one more time, F1 score is defined as:
+<img src="https://latex.codecogs.com/svg.latex?2*\frac{Precision*Recall}{Precision+Recall}">.
 
 # Acknowledgements
 * [Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
 * [Accuracy, Precision, Recall, F1 - exsilio](https://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/#:~:text=Recall%20(Sensitivity)%20%2D%20Recall%20is,observations%20in%20actual%20class%20%2D%20yes.&text=F1%20score%20%2D%20F1%20Score%20is,and%20false%20negatives%20into%20account.)
 * [Docstrings in Python](https://www.datacamp.com/community/tutorials/docstrings-python)
-* [Awesome Github Readme](https://github.com/matiassingers/awesome-readme)
+* [Github Readme](https://github.com/matiassingers/awesome-readme)
 * [Mastering Github Markdown](https://guides.github.com/features/mastering-markdown/)
+* [LaTeX in Github] (https://stackoverflow.com/questions/11256433/how-to-show-math-equations-in-general-githubs-markdownnot-githubs-blog)
