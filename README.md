@@ -78,15 +78,11 @@ Recall on the other hand is defined as <img src="https://render.githubuserconten
 
 It's probably fair to assume that in case of disaster response, recall is the more relevant measure - if there is indeed an emergency, we'd want to know it asap so we can respond accordingly. Therefore we can conclude that for "request", the model is not very useful.
 
-We could look further into F1 score, which combines both metrics, but for now let's focus and precision and recall only. Let's look at some of the other categories which are most critical/signify scenarios where people need emergency help:
+We could look further into F1 score, which combines both metrics, but for now let's focus on recall only as we concluded is the more relevant metric. Let's look at some of the other categories where people need emergency help:
 
-* Medical help:
+* Medical Help:
 
 ![medical_help](https://github.com/acp91/Disaster_response_project_2/blob/main/images/medical_help.png)
-
-* Hospitals:
-
-![hospitals](https://github.com/acp91/Disaster_response_project_2/blob/main/images/hospitals.png)
 
 * Food:
 
@@ -95,6 +91,10 @@ We could look further into F1 score, which combines both metrics, but for now le
 * Earthquake:
 
 ![earthquake](https://github.com/acp91/Disaster_response_project_2/blob/main/images/earthquake.png)
+
+What do above images tell us? Based on recall, we have to be careful what model predictions to trust. For some classifications it is much more useful/reliable than others. "Medical help" has a low recall of 19%, "food" of 55% and "earthquake" of 75%.
+
+One possible reason for that is the way different messages are usually phrased by people and shared. When referring to earthquake, messages would be mostly unambiguous as earthquake is specific event with consequences such as collapsed buildings. Asking for medical help on the other hand can be phrased in many differnt ways and can refer to many different scenarios and severities.
 
 # Acknowledgements
 * [Precision, Recall - developers.google](https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall)
