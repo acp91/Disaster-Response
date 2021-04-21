@@ -81,12 +81,19 @@ It's probably fair to assume that in case of disaster response, recall is the mo
 We could look further into F1 score, which combines both metrics, but for now let's focus and precision and recall only. Let's look at some of the other categories which are most critical/signify scenarios where people need emergency help:
 
 * Medical help:
+
 ![medical_help](https://github.com/acp91/Disaster_response_project_2/blob/main/images/medical_help.png)
+
 * Hospitals:
+
 ![hospitals](https://github.com/acp91/Disaster_response_project_2/blob/main/images/hospitals.png)
+
 * Food:
+
 ![food](https://github.com/acp91/Disaster_response_project_2/blob/main/images/food.png)
-* Earthquake
+
+* Earthquake:
+
 ![earthquake](https://github.com/acp91/Disaster_response_project_2/blob/main/images/earthquake.png)
 
 # Acknowledgements
