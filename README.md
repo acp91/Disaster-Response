@@ -67,8 +67,8 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 
 
 # Acknowledgements
-*[Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
-*[Accuracy, Precision, Recall, F1 - exsilio](https://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/#:~:text=Recall%20(Sensitivity)%20%2D%20Recall%20is,observations%20in%20actual%20class%20%2D%20yes.&text=F1%20score%20%2D%20F1%20Score%20is,and%20false%20negatives%20into%20account.)
-*[Docstrings in Python](https://www.datacamp.com/community/tutorials/docstrings-python)
-*[Awesome Github Readme](https://github.com/matiassingers/awesome-readme)
-*[Mastering Github Markdown](https://guides.github.com/features/mastering-markdown/)
+* [Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)
+* [Accuracy, Precision, Recall, F1 - exsilio](https://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/#:~:text=Recall%20(Sensitivity)%20%2D%20Recall%20is,observations%20in%20actual%20class%20%2D%20yes.&text=F1%20score%20%2D%20F1%20Score%20is,and%20false%20negatives%20into%20account.)
+* [Docstrings in Python](https://www.datacamp.com/community/tutorials/docstrings-python)
+* [Awesome Github Readme](https://github.com/matiassingers/awesome-readme)
+* [Mastering Github Markdown](https://guides.github.com/features/mastering-markdown/)
