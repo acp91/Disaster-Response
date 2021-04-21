@@ -2,7 +2,7 @@
 # Overview
 Disaster response for Udacity Data Science Course
 
-In this project I analyzed ~25k tweets that were sent after different disasters happened around the world. Tweets are classified into 36 different categories. The task was to:
+In this project I analyzed ~25k tweets that were sent after different disasters happened around the world. Tweets are classified into 35 different categories. The task was to:
 1) Clean-up and prepare tweet data so it can be used in machine learning models
 2) Train a machine learning model to be able to classify tweets based on words/context used
 3) Finally create a web-app where users can write any message they are interested in and see how it would be classified. It also displays various graphs that summarize the most important characteristics of the data
@@ -65,6 +65,11 @@ For example, message "The earthquake in the nearby village destroyed many buildi
 
 ![Classified_message](https://user-images.githubusercontent.com/61375966/115521089-16b44980-a28b-11eb-8714-d8348a312c35.png)
 
+# Model Evaluation
+train_classifier.py script also prints out classification report for each of the message categories. Please see Acknowledgements section for links with clear explanation on how to interpret accuracy, precision, recall and F1.
+
+As mentioned in [this article](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9):
+* precision, defined as <img src="https://latex.codecogs.com/gif.latex?/frac{a}/{b}" />, is good for measuring your model's performance when the cost of False Positive is high. False positive in our case would be message classified as "Accident" when in fact it isn't
 
 # Acknowledgements
 * [Accuracy, Precision, Recall, F1 - towardsdatascienec](https://towardsdatascience.com/accuracy-precision-recall-or-f1-331fb37c5cb9)

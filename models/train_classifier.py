@@ -144,7 +144,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
     # loop fro each column/category name and produce a classification report
     for col, col_name in enumerate(category_names):
-        print("Classification report for column " + str(col+1) + " is: " + str(col_name) + " is:\n" + classification_report(Y_test.iloc[:, col],
+        print("Classification report for column " + str(col+1) + ": " + str(col_name) + " is:\n" + classification_report(Y_test.iloc[:, col],
                                                                                                     Y_pred[:, col]))
 
 
