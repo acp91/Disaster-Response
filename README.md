@@ -78,7 +78,16 @@ Recall on the other hand is defined as <img src="https://render.githubuserconten
 
 It's probably fair to assume that in case of disaster response, recall is the more relevant measure - if there is indeed an emergency, we'd want to know it asap so we can respond accordingly. Therefore we can conclude that for "request", the model is not very useful.
 
-But we can't ignore precision either as it could mean we are wasting resources responding to a "fake" emergency. This is where F1 score comes in: <img src="https://render.githubusercontent.com/render/math?math=\large 2* \frac{Precision * Recall}{Precision + Recall}">
+We could look further into F1 score, which combines both metrics, but for now let's focus and precision and recall only. Let's look at some of the other categories which are most critical/signify scenarios where people need emergency help:
+
+* Medical help:
+![medical_help](https://github.com/acp91/Disaster_response_project_2/blob/main/images/medical_help.png)
+* Hospitals:
+![hospitals](https://github.com/acp91/Disaster_response_project_2/blob/main/images/hospitals.png)
+* Food:
+![food](https://github.com/acp91/Disaster_response_project_2/blob/main/images/food.png)
+* Earthquake
+![earthquake](https://github.com/acp91/Disaster_response_project_2/blob/main/images/earthquake.png)
 
 # Acknowledgements
 * [Precision, Recall - developers.google](https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall)
