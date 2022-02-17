@@ -1,4 +1,4 @@
-# Disaster_response_project_2
+# Disaster Response
 # Overview
 Disaster response for Udacity Data Science Course
 
